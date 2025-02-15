@@ -4,11 +4,6 @@ A quick and dirty data scrapper for the [Birmingham City councils bin collection
 
 The aim is to run in on an arduino with lights to flash different colours to indicate it's bin day. Thought I would seperate out this bit in case it's of use to anyone else
 
-### Install
-```bash
-go install github.com/shmink/BhamBins/cmd/bhambins@latest
-```
-
 ### Usage
 ```
 ❯ ./bhambins -p "B17 0LY" -u "100070285236"
@@ -31,6 +26,8 @@ go install github.com/shmink/BhamBins/cmd/bhambins@latest
 
 - `-p`, `--postcode` is for postcode
 - `-u`, `--uprn` is for UPRN which you can [look up here](https://www.findmyaddress.co.uk/search)
+
+If you're not interested in the source code you can just [download the binary](https://github.com/shmink/BhamBins/raw/refs/heads/main/bhambins) and run it like you see above.
 
 ### Limitations
 
