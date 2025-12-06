@@ -12,13 +12,11 @@ The aim is to run in on an arduino with lights to flash different colours to ind
     "bins": [
         {
             "name": "Household Collection",
-            "webDate": "Monday (12th)",
-            "actualDate": "2024-08-12"
+            "date": "2024-08-12"
         },
         {
             "name": "Recycling Collection",
-            "webDate": "Monday (12th)",
-            "actualDate": "2024-08-12"
+            "date": "2024-08-12"
         }
     ]
 }
