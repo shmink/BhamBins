@@ -37,6 +37,11 @@ example:
 }
 
 func main() {
+	if port, ok := os.LookupEnv("PORT"); ok && port != "" {
+		runHTTPServer(port)
+		return
+	}
+
 	flag.Parse()
 
 	if postcode == "" || uprn == "" {
