@@ -32,4 +32,5 @@ If you're not interested in the source code you can just [download the binary](h
 ### Limitations
 
 - It's really basic. Only seems to work with houses, so flats with shared bins are out.
-- Hard coded values, so if the council change their minds of the web page address this won't work but I don't have any power over this.
+- Hard coded values, so if the council change their minds of the web page address this won't work but I don't have any power over this. (06/12/2025 - they changed how they return dates for example which borked this program for example)
+
