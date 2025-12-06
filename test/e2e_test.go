@@ -9,9 +9,8 @@ import (
 )
 
 type BinCollection struct {
-	Name       string `json:"name"`
-	WebDate    string `json:"webDate"`
-	ActualDate string `json:"actualDate"`
+	Name string `json:"name"`
+	Date string `json:"date"`
 }
 
 type BinCollections struct {
@@ -39,7 +38,7 @@ func TestBhambinsBinary(t *testing.T) {
 	if len(data.Bins) == 0 {
 		t.Fatalf("expected at least one bin collection, got none")
 	}
-	if data.Bins[0].ActualDate == "" {
-		t.Errorf("expected ActualDate to be populated, got empty")
+	if data.Bins[0].Date == "" {
+		t.Errorf("expected Date to be populated, got empty")
 	}
 }

@@ -1,9 +1,8 @@
 package bins
 
 type Collection struct {
-	Name       string `json:"name"`
-	WebDate    string `json:"webDate"`
-	ActualDate string `json:"actualDate"`
+	Name string `json:"name"`
+	Date string `json:"date"`
 }
 
 type Collections struct {
