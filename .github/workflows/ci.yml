@@ -39,13 +39,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Log in to Google Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: gcr.io
-          username: _json_key
-          password: ${{ secrets.GCR_SERVICE_ACCOUNT_KEY }}
-
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -63,5 +56,28 @@ jobs:
           tags: |
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/bhambins:latest
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/bhambins:${{ github.sha }}
-            gcr.io/${{ secrets.GCP_PROJECT_ID }}/bhambins:latest
-            gcr.io/${{ secrets.GCP_PROJECT_ID }}/bhambins:${{ github.sha }}
+
+  deploy-cloudrun:
+    name: Deploy to Cloud Run
+    needs: docker-build-push
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCR_SERVICE_ACCOUNT_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ secrets.GCP_CLOUD_RUN_SERVICE }} \
+            --image docker.io/${{ secrets.DOCKERHUB_USERNAME }}/bhambins:latest \
+            --region ${{ secrets.GCP_REGION }} \
+            --platform managed \
+            --allow-unauthenticated
