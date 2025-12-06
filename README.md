@@ -29,9 +29,25 @@ The aim is to run in on an arduino with lights to flash different colours to ind
 <details>
 <summary>Running with Docker</summary>
 
+If you want to do it locally
 ```
 ❯ docker build -t bhambins .
 ❯ docker run --rm bhambins \
+  -p "B17 0LY" \
+  -u "100070285236"
+{
+  "bins": [
+    {
+      "name": "Household Collection",
+      "date": "2025-12-08"
+    }
+  ]
+}
+
+```
+Or you can just use the remote one
+```
+❯ docker run --rm shmink/bhambins \
   -p "B17 0LY" \
   -u "100070285236"
 {
